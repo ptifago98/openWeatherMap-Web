@@ -1,4 +1,3 @@
-<%@ page import="ch.hearc.ig.scl.business.StationMeteo" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -14,7 +13,8 @@
 </head>
 <body>
     <jsp:include page="../tags/header.jsp" />
-    <input type="button" name="ajoutStation"><a href="${pageContext.request.contextPath}/ajout-meteo">Ajouter des stations</a></input>
+    <a href="${pageContext.request.contextPath}/ajout-meteo"><button>Ajouter des stations</button></a>
+    <button onclick="refreshAllStations(this)">Rafraîchir les données de toutes les stations</button>
     <main>
         <h1>Liste des stations</h1>
         <table>
@@ -78,6 +78,30 @@
                     btn.style.color = 'red';
                     btn.disabled = false;
                 });
+        }
+        function refreshAllStations(btn){
+                btn.disabled = true;
+                btn.textContent = 'En cours...';
+                fetch('${pageContext.request.contextPath}/refresh-all-stations',{
+                    method: 'POST'
+                }).then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            btn.textContent = data.message;
+                            btn.style.color = 'green';
+                        } else {
+                            btn.textContent = data.message;
+                            btn.style.color = 'red';
+                            btn.disabled = false;
+                        }
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        btn.textContent = 'Erreur réseau';
+                        btn.style.color = 'red';
+                        btn.disabled = false;
+                    });
+
         }
     </script>
 </body>

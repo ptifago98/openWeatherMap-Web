@@ -15,6 +15,9 @@
     <jsp:include page="../tags/header.jsp" />
 
     <main>
+        <p>
+            <a href="${pageContext.request.contextPath}/stations">← Retour à la liste</a>
+        </p>
         <c:if test="${not empty sessionScope.success}">
             <p>${sessionScope.success}</p>
             <c:remove var="success" scope="session"/>
