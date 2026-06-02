@@ -14,6 +14,7 @@
 </head>
 <body>
     <jsp:include page="../tags/header.jsp" />
+    <input type="button" name="ajoutStation"><a href="${pageContext.request.contextPath}/ajout-meteo">Ajouter des stations</a></input>
     <main>
         <h1>Liste des stations</h1>
         <table>
@@ -39,6 +40,9 @@
                 <td>
                     <a href="${pageContext.request.contextPath}/affichage-données?id=${s.idStation}">Voir données météos</a>
                 </td>
+                <td>
+                    <button onclick="refreshStation('${s.idStation}', this)">Rafraîchir</button>
+                </td>
             </tr>
             </c:forEach>
             </tbody>
@@ -47,6 +51,37 @@
         </table>
     </main>
     <jsp:include page="../tags/footer.jsp" />
+
+
+    <script>
+        function refreshStation(id, btn) {
+            btn.disabled = true;
+            btn.textContent = 'En cours...';
+
+            fetch('${pageContext.request.contextPath}/refresh-station?id=' + id, {
+                method: 'POST'
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        btn.textContent = data.message;
+                        btn.style.color = 'green';
+                    } else {
+                        btn.textContent = data.message;
+                        btn.style.color = 'red';
+                        btn.disabled = false;
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    btn.textContent = 'Erreur réseau';
+                    btn.style.color = 'red';
+                    btn.disabled = false;
+                });
+        }
+    </script>
 </body>
+
+
 </html>
 

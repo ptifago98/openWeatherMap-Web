@@ -11,7 +11,6 @@
         <nav class="nav-links">
             <a href="${pageContext.request.contextPath}/accueil">Home</a>
             <a href="${pageContext.request.contextPath}/stations">Voir les stations</a>
-            <a href="${pageContext.request.contextPath}/ajout-meteo">Ajouter des stations</a>
         </nav>
 
 

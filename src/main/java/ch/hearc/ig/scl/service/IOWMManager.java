@@ -13,6 +13,7 @@ public interface IOWMManager{
     List<StationMeteo> getStations();
     StationMeteo getMeteo(String idStation);
     boolean refreshData();
+    boolean refreshDataForOneStation(String idStation);
 
 
 }
