@@ -118,6 +118,7 @@ APIKEY=
 | --------- | ---------------------- |
 | APIKEY    | Clé API OpenWeatherMap |
 
+**Il faut avoir installer Tomcat11 et configuré le projet**  
 **Il faut également exécuter le script SQL dans le fichier OWM.sql**
 ---
 
@@ -141,9 +142,9 @@ APIKEY=
 <img width="1919" height="911" alt="image" src="https://github.com/user-attachments/assets/8915b05b-4e3d-4416-8962-86f4f272117d" />
 
 **Cliquer "Ajouter une station" permet d'ajouter une station."**
-Exemple :
-Entrer une latitude : 46.99
-Entrer une longitude : 6.93
+Exemple :  
+Entrer une latitude : 46.99  
+Entrer une longitude : 6.93  
 <img width="1919" height="906" alt="image" src="https://github.com/user-attachments/assets/fa8eb0b0-81bc-4768-86ef-45a05d8e98f8" />
 
 ---
