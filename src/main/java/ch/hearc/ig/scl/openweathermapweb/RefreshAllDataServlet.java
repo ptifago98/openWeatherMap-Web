@@ -32,7 +32,7 @@ public class RefreshAllDataServlet extends HttpServlet {
                 resp.getWriter().write("{\"success\": true, \"message\": \"Données rafraîchies avec succès !\"}");
             }else{
                 resp.setStatus(HttpServletResponse.SC_OK);
-                resp.getWriter().write("{\"success\": false, \"message\": \"toutes Les données sont à jour.\"}");
+                resp.getWriter().write("{\"success\": false, \"message\": \"Toutes Les données sont à jour.\"}");
             }
 
         } catch (Exception e) {
