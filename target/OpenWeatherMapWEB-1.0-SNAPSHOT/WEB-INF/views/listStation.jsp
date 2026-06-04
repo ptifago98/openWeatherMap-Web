@@ -49,7 +49,7 @@
                     <td><span class="code-pill">${s.pays.code}</span></td>
                     <td>${s.latitude}</td>
                     <td>${s.longitude}</td>
-                    <td>UTC+${s.timeZone / 3600}</td>
+                    <td>UTC ${s.timeZone / 3600}</td>
                     <td>
                         <a href="${pageContext.request.contextPath}/affichage-données?id=${s.idStation}" class="btn-secondary-clean btn-sm-clean">
                             Voir
@@ -84,7 +84,6 @@
                     btn.classList.add('btn-success-state');
                 } else {
                     btn.classList.add('btn-error-state');
-                    btn.disabled = false;
                 }
             })
             .catch(err => {
@@ -92,12 +91,18 @@
                 btn.textContent = 'Erreur réseau';
                 btn.classList.add('btn-error-state');
                 btn.disabled = false;
-            });
+            })
+            .finally(setTimeout(() => {
+            btn.disabled = false;
+            btn.classList.remove('btn-success-state', 'btn-error-state');
+            btn.textContent = 'Rafraîchir';
+        }, 5000));
     }
 
     function refreshAllStations(btn) {
         btn.disabled = true;
         btn.textContent = 'En cours...';
+
 
         fetch('${pageContext.request.contextPath}/refresh-all-stations', {
             method: 'POST'
@@ -109,7 +114,6 @@
                     btn.classList.add('btn-success-state');
                 } else {
                     btn.classList.add('btn-error-state');
-                    btn.disabled = false;
                 }
             })
             .catch(err => {
@@ -117,7 +121,14 @@
                 btn.textContent = 'Erreur réseau';
                 btn.classList.add('btn-error-state');
                 btn.disabled = false;
-            });
+            })
+            .finally(setTimeout(() => {
+            btn.disabled = false;
+            btn.classList.remove('btn-success-state', 'btn-error-state');
+            btn.textContent = 'Rafraîchir';
+        }, 5000));
+
+
     }
 </script>
 </body>

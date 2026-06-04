@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(name = "stationsServlet", value = "/stations")
-public class stationsServlet extends HttpServlet {
+public class StationsServlet extends HttpServlet {
     private IOWMManager manager;
 
     @Override
